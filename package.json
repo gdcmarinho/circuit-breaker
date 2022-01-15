@@ -1,0 +1,28 @@
+{
+  "name": "circuit-breaker",
+  "version": "1.0.0",
+  "description": "A NodeJS circuit breaker implementation using Opossum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdcmarinho/circuit-breaker.git"
+  },
+  "keywords": [
+    "nodejs",
+    "circuit",
+    "breaker",
+    "javascript",
+    "opossum",
+    "stability",
+    "rabbitmq"
+  ],
+  "author": "Gabriel Marinho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gdcmarinho/circuit-breaker/issues"
+  },
+  "homepage": "https://github.com/gdcmarinho/circuit-breaker#readme"
+}
