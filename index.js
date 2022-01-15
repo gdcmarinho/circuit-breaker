@@ -4,8 +4,8 @@ timePreferences = {
 }
 
 const STATES = [
-    "open",
     "closed",
+    "open",
     "halfOpen"
 ];
 
@@ -37,5 +37,5 @@ class CircuitBreaker {
 const circuitBreaker = new CircuitBreaker();
 console.log("The current state is " + circuitBreaker.getCurrentState());
 
-circuitBreaker.updateState("closed")
+circuitBreaker.updateState("open")
 console.log("The current state is " + circuitBreaker.getCurrentState());

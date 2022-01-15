@@ -2,8 +2,8 @@
 ⚡️ A concise circuit breaker implementation
 
 ### States
+- closed (Default state)
 - open
-- closed
 - halfOpen
 
 ### Methods
