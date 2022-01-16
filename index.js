@@ -51,6 +51,8 @@ class CircuitBreaker {
                 }, timePreferences.timeRetry);
             } else {
                 this.updateState(STATES[0]);
+
+                return res;
             }
         });
     }
