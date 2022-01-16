@@ -45,7 +45,10 @@ export class CircuitBreaker {
             console.log('Service Unavailable', res);
 
             setTimeout(() => {
-                if (isHalfOpen) this.updateState(HALF_OPEN);
+                if (isHalfOpen) {
+                    this.updateState(HALF_OPEN);
+                    if (timePreferences.progressiveRetry) timePreferences.timeRetry = timePreferences.timeRetry * 2;
+                }
 
                 this.executeAct(act, timePreferences, true);
             }, timePreferences.timeRetry);
