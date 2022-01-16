@@ -1,5 +1,5 @@
 {
-  "name": "circuit-breaker",
+  "name": "circuitbreakerjs",
   "version": "1.0.0",
   "description": "A NodeJS circuit breaker implementation using Opossum",
   "main": "index.js",
