@@ -7,6 +7,13 @@
 </div>
 
 <div align="center">
+  <img src="https://img.shields.io/github/repo-size/gdcmarinho/circuit-breaker?color=%23f1e159&style=flat-square">
+  <img src="https://img.shields.io/github/checks-status/gdcmarinho/circuit-breaker/main?color=%23F1E159&style=flat-square">
+  <img src="https://img.shields.io/snyk/vulnerabilities/github/gdcmarinho/circuit-breaker?color=%23f1e159&style=flat-square">
+  <img src="https://img.shields.io/github/languages/top/gdcmarinho/circuit-breaker?color=%23f1e159&style=flat-square">
+</div>
+
+<div align="center">
   <p>A concise circuit breaker implementation</p>
 </div>
 
