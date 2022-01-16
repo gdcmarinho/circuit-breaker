@@ -50,7 +50,7 @@ class CircuitBreaker {
                     this.executeAct(act, timePreferences, true)
                 }, timePreferences.timeRetry);
             } else {
-                this.updateState(STATES[0]); // SUCESSO
+                this.updateState(STATES[0]);
             }
         });
     }
