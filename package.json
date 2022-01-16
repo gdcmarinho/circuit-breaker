@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/gdcmarinho/circuit-breaker#readme",
   "dependencies": {
+    "eslint": "^8.7.0",
     "typescript": "^4.5.4"
   }
 }
