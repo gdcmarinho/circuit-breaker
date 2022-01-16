@@ -18,7 +18,7 @@
 ### Methods
 - getCurrentState()
 - updateState(newState)
-- newRetry()
+- executeAct(act, timePreferences, isHalfOpen)
 
 ## 📝 License
 This project is licensed under the 
