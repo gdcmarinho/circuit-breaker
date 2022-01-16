@@ -54,7 +54,7 @@ export class CircuitBreaker {
 }
 
 const EXAMPLE_ACT = function mockExternalServiceReturn(): number {
-    return 501;
+    return 200;
 }
 
 const EXAMPLE_TIME_PREFERENCES: TimePreferences = {
