@@ -35,10 +35,10 @@ class CircuitBreaker {
 
     executeAct(act, timePreferences, isHalfOpen) {
         const res = act();
-        console.log(res);
 
         if (res >= 500) {
             this.updateState(OPEN);
+            console.log("Service Unavailable", res);
 
             setTimeout(() => {
                 if (isHalfOpen)
@@ -54,8 +54,14 @@ class CircuitBreaker {
     };
 }
 
-const act = function printHelloWorld() {
+const EXAMPLE_ACT = function printHelloWorld() {
     return 501;
 }
 
-const circuitBreaker = new CircuitBreaker(act);
+const EXAMPLE_TIME_PREFERENCES = {
+    timeout: 3000,
+    timeRetry: 10000,
+    progressiveRetry: false
+}
+
+const circuitBreaker = new CircuitBreaker(EXAMPLE_ACT, EXAMPLE_TIME_PREFERENCES);
