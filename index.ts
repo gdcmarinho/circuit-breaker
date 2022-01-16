@@ -1,4 +1,6 @@
-const DEFAULT_TIME_PREFERENCES = {
+import { TimePreferences } from "./src/model/TimePreferences";
+
+const DEFAULT_TIME_PREFERENCES: TimePreferences = {
     timeout: 3000,
     timeRetry: 30000,
     progressiveRetry: false
@@ -8,32 +10,29 @@ const CLOSED = Symbol('closed');
 const OPEN = Symbol('open');
 const HALF_OPEN = Symbol('halfOpen');
 
-var currentState;
-var timePreferences;
+export class CircuitBreaker {
+    currentState: any;
+    timePreferences: TimePreferences;
 
-class CircuitBreaker {
-    constructor(act, timePreferences) {
+    constructor(act: Function, timePreferences?: TimePreferences) {
         this.currentState = CLOSED;
         !timePreferences ? this.timePreferences = DEFAULT_TIME_PREFERENCES : this.timePreferences = timePreferences;
 
         if (!act)
             throw new Error('No act was informed. Please enter a method to be executed.');
 
-        if (typeof act !== 'function')
-            throw new Error('The act informed was not a function. Please enter a function to be executed.');
-
-        this.executeAct(act, this.timePreferences);
+        this.executeAct(act, this.timePreferences, false);
     }
 
-    getCurrentState() {
+    getCurrentState(): SymbolConstructor {
         return this.currentState;
     }
 
-    updateState(newState) {
+    updateState(newState: symbol): void {
         this.currentState = newState;
     }
 
-    executeAct(act, timePreferences, isHalfOpen) {
+    executeAct(act: Function, timePreferences: TimePreferences, isHalfOpen: boolean): void {
         const res = act();
 
         if (res >= 500) {
@@ -54,11 +53,11 @@ class CircuitBreaker {
     };
 }
 
-const EXAMPLE_ACT = function mockExternalServiceReturn() {
+const EXAMPLE_ACT = function mockExternalServiceReturn(): number {
     return 501;
 }
 
-const EXAMPLE_TIME_PREFERENCES = {
+const EXAMPLE_TIME_PREFERENCES: TimePreferences = {
     timeout: 3000,
     timeRetry: 10000,
     progressiveRetry: false
