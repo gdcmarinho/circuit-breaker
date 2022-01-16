@@ -30,7 +30,7 @@ class CircuitBreaker {
     }
 
     updateState(newState) {
-        currentState = newState;
+        this.currentState = newState;
     }
 
     executeAct(act, timePreferences, isHalfOpen) {
@@ -54,7 +54,7 @@ class CircuitBreaker {
     };
 }
 
-const EXAMPLE_ACT = function printHelloWorld() {
+const EXAMPLE_ACT = function mockExternalServiceReturn() {
     return 501;
 }
 
