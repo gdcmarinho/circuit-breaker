@@ -30,6 +30,11 @@ The idea is an inspiration from the electric circuit breakers. When there is an 
 ### What is an act?
 Act is the method you want to execute and tends to be prone to failures.
 
+### Demonstration
+If you want to see the implementation working, run the following command after cloning the repository and install the dependencias:
+```bash
+npm start
+```
 ###  States
 - CLOSED (Default state)
 - OPEN
