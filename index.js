@@ -1,28 +1,31 @@
-timePreferences = {
+defaultTimePreferences = {
     timeout: 3000, 
     timeRetry: 30000
 }
 
 const STATES = [
-    "closed",
-    "open",
-    "halfOpen"
+    'closed',
+    'open',
+    'halfOpen'
 ];
 
 var currentState;
 var timePreferences;
 
 class CircuitBreaker {
-    constructor(timePreferences) {
-        console.log("INITIALIZING CIRCUIT BREAKER");
+    constructor(act, timePreferences) {
         this.currentState = STATES[0];
+        !timePreferences ? this.timePreferences = defaultTimePreferences : this.timePreferences = timePreferences;
 
-        if (timePreferences)
-            this.timePreferences = timePreferences;
+        if (!act)
+            throw new Error('No act was informed. Please enter a method to be executed.');
+
+        if (typeof action == 'function')
+            Promise.resolve(action);
     }
 
     getCurrentState() {
-        console.log(">> Verifying current state");
+        console.log('>> Verifying current state');
         return currentState;
     }
 
@@ -31,11 +34,4 @@ class CircuitBreaker {
             if (newState == state)
                 currentState = newState;
         });
-    }
-}
-
-const circuitBreaker = new CircuitBreaker();
-console.log("The current state is " + circuitBreaker.getCurrentState());
-
-circuitBreaker.updateState("open")
-console.log("The current state is " + circuitBreaker.getCurrentState());
+    }}
