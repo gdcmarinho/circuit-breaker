@@ -4,7 +4,8 @@
   "description": "A NodeJS circuit breaker implementation using Opossum",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "build": "tsc -p . && node ./dist/index.js",
+    "start": "npm run build -- -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/gdcmarinho/circuit-breaker/issues"
   },
-  "homepage": "https://github.com/gdcmarinho/circuit-breaker#readme"
+  "homepage": "https://github.com/gdcmarinho/circuit-breaker#readme",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  }
 }
