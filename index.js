@@ -4,18 +4,16 @@ const DEFAULT_TIME_PREFERENCES = {
     progressiveRetry: false
 }
 
-const STATES = [
-    'closed',
-    'open',
-    'halfOpen'
-];
+const CLOSED = Symbol('closed');
+const OPEN = Symbol('open');
+const HALF_OPEN = Symbol('halfOpen');
 
 var currentState;
 var timePreferences;
 
 class CircuitBreaker {
     constructor(act, timePreferences) {
-        this.currentState = STATES[0];
+        this.currentState = CLOSED;
         !timePreferences ? this.timePreferences = DEFAULT_TIME_PREFERENCES : this.timePreferences = timePreferences;
 
         if (!act)
@@ -28,32 +26,36 @@ class CircuitBreaker {
     }
 
     getCurrentState() {
-        return currentState;
+        return this.currentState;
     }
 
     updateState(newState) {
-        STATES.forEach(state => {
-            if (newState == state)
-                currentState = newState;
-        });
+        currentState = newState;
     }
 
     executeAct(act, timePreferences, isHalfOpen) {
-        Promise.resolve(act).then((res) => {
-            if (res >= 500) {
-                this.updateState(STATES[1]);
+        const res = act();
+        console.log(res);
 
-                setTimeout(() => {
-                    if (isHalfOpen)
-                        this.updateState(STATES[2]);
-                    
-                    this.executeAct(act, timePreferences, true)
-                }, timePreferences.timeRetry);
-            } else {
-                this.updateState(STATES[0]);
+        if (res >= 500) {
+            this.updateState(OPEN);
 
-                return res;
-            }
-        });
-    }
+            setTimeout(() => {
+                if (isHalfOpen)
+                    this.updateState(HALF_OPEN);
+
+                this.executeAct(act, timePreferences, true)
+            }, timePreferences.timeRetry);
+        } else {
+            this.updateState(CLOSED);
+
+            return res;
+        }
+    };
 }
+
+const act = function printHelloWorld() {
+    return 501;
+}
+
+const circuitBreaker = new CircuitBreaker(act);
