@@ -10,10 +10,23 @@
   <p>A concise circuit breaker implementation</p>
 </div>
 
-### States
-- closed (Default state)
-- open
-- halfOpen
+### ✨ Features
+- ▶️ Easy start — just install and start using
+- 📒 Completely documented
+- 💾 Extremely lightweight and concise implementation
+
+### What is circuit breaker?
+The circuit breaker is a relatively simple design pattern. It's all based on the idea that you package protected function calls inside a circuit breaker object. This object will be responsible for monitoring possible failures.
+
+The idea is an inspiration from the electric circuit breakers. When there is an instability in the electrical system, all electrical energy is automatically turned off by the circuit breaker. Thinking on the same, it's possible to apply the same idea to software architecture.
+
+### What is an act?
+Act is the method you want to execute and tends to be prone to failures.
+
+###  States
+- CLOSED (Default state)
+- OPEN
+- HALF_OPEN
 
 ### Methods
 - getCurrentState()
