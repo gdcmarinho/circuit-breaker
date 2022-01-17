@@ -1,5 +1,5 @@
 import { CircuitBreaker } from './src/CircuitBreaker';
-import { TimePreferences } from './src/model/TimePreferences';
+import { TimePreferences } from './src/interface/ITimePreferences';
 
 const EXAMPLE_ACT = function mockExternalServiceReturn(): number {
     return 200;
