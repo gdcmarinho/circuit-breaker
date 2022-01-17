@@ -8,7 +8,7 @@ const DEFAULT_TIME_PREFERENCES: TimePreferences = {
 };
 
 export class CircuitBreaker {
-    currentState: any;
+    currentState: typeof CLOSED | typeof OPEN | typeof HALF_OPEN;
     timePreferences: TimePreferences;
 
     constructor(act: Function, timePreferences?: TimePreferences) {
@@ -25,11 +25,11 @@ export class CircuitBreaker {
         this.executeAct(act, this.timePreferences, false);
     }
 
-    getCurrentState(): SymbolConstructor {
+    getCurrentState(): typeof CLOSED | typeof OPEN | typeof HALF_OPEN {
         return this.currentState;
     }
 
-    updateState(newState: symbol): void {
+    updateState(newState: typeof CLOSED | typeof OPEN | typeof HALF_OPEN): void {
         this.currentState = newState;
     }
 
@@ -54,8 +54,6 @@ export class CircuitBreaker {
             }, timePreferences.timeRetry);
         } else {
             this.updateState(CLOSED);
-
-            return res;
         }
     }
 }
