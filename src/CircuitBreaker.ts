@@ -1,5 +1,5 @@
 import { CLOSED, HALF_OPEN, OPEN } from './model/States';
-import { TimePreferences } from './model/TimePreferences';
+import { TimePreferences } from './interface/ITimePreferences'
 
 const DEFAULT_TIME_PREFERENCES: TimePreferences = {
     timeout: 3000,
