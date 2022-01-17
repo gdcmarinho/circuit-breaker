@@ -2,16 +2,16 @@ import { CircuitBreaker } from './src/CircuitBreaker';
 import { TimePreferences } from './src/interface/ITimePreferences';
 
 const EXAMPLE_ACT = function mockExternalServiceReturn(): number {
-    return 200;
+    return 200; // INFO: Change to status code 500 or more to see retries
 };
 
 const EXAMPLE_TIME_PREFERENCES: TimePreferences = {
     timeout: 3000,
     timeRetry: 5000,
-    progressiveRetry: false,
+    progressiveRetry: true,
 };
 
-new CircuitBreaker(
+const circuitBreaker = new CircuitBreaker(
     EXAMPLE_ACT,
     EXAMPLE_TIME_PREFERENCES
 );
