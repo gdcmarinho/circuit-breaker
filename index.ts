@@ -1,8 +1,9 @@
 import { CircuitBreaker } from './src/CircuitBreaker';
 import { TimePreferences } from './src/interface/ITimePreferences';
 
-const EXAMPLE_ACT = function mockExternalServiceReturn(): number {
-    return 200; // INFO: Change to status code 500 or more to see retries
+const EXAMPLE_ACT = function mockExternalServiceReturn(message: string = 'Trying to connect...'): number {
+    console.log(message);
+    return 500; // INFO: Change to status code 500 or more to see retries
 };
 
 const EXAMPLE_TIME_PREFERENCES: TimePreferences = {
