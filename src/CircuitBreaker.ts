@@ -79,11 +79,12 @@ export class CircuitBreaker {
         timePreferences: TimePreferences,
         isHalfOpen: boolean
     ): void {
-        const res = act();
-
-        if (res >= 500) {
+        try {
+            const res = act();
+            this.updateState(CLOSED);
+        } catch (e) {
             this.updateState(OPEN);
-            console.log('Service Unavailable', res);
+            console.log('Service Unavailable', e);
 
             setTimeout(() => {
                 if (isHalfOpen) {
@@ -95,8 +96,7 @@ export class CircuitBreaker {
 
                 this.executeAct(act, timePreferences, true);
             }, timePreferences.timeRetry);
-        } else {
-            this.updateState(CLOSED);
         }
+
     }
 }
